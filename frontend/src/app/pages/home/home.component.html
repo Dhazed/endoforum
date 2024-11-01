@@ -1,0 +1,69 @@
+<!-- Header -->
+<header style="position: absolute;width: 100vw;">
+    <nav style="background-color: transparent !important;" class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" alt="Forum Logo" style="height: 120px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Categorie</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Post più Commentati</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contatti</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Hero Section -->
+  <div class="hero-section"
+    style="background-image: url('background_home.jpg'); height: 100vh; background-size: cover; background-position: center;">
+    <div class="hero-content d-flex flex-column justify-content-center align-items-center h-100">
+      <h1 class="text-white mb-4">Benvenuti nel Forum</h1>
+      <input type="text" style="border-radius: 50px;" class="form-control w-50" placeholder="Cerca nel forum...">
+    </div>
+  </div>
+  <div class="container mt-4">
+    <!-- Sezione delle Categorie -->
+    <h2 class="mb-4">Categorie</h2>
+    <div class="row">
+      <div *ngFor="let category of categories" class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <p class="card-text">{{ category.description }}</p>
+            <a [routerLink]="['/category', category.id]" class="btn btn-primary">Vai alla categoria</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sezione dei Post più Commentati -->
+    <h2 class="mt-5 mb-4">Post più Commentati</h2>
+    <div class="list-group">
+      <div *ngFor="let post of topCommentedPosts" class="list-group-item">
+        <h5 class="mb-1">{{ post.title }}</h5>
+        <p class="mb-1">{{ post.content }}</p>
+        <small>Approved: {{ post.approved }}</small><br>
+        <small>Created At: {{ post.createdAt }}</small><br>
+        <small>Document ID: {{ post.documentId }}</small><br>
+        <small>Published At: {{ post.publishedAt }}</small><br>
+        <small>Updated At: {{ post.updatedAt }}</small><br>
+        <small>{{ post.commentCount }} commenti</small>
+        <a [routerLink]="['/post', post.id]" class="stretched-link"></a>
+      </div>
+    </div>
+</div>
